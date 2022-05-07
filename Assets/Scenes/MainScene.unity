@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 61133493}
   - component: {fileID: 61133492}
   - component: {fileID: 61133491}
+  - component: {fileID: 61133495}
   m_Layer: 0
   m_Name: Bot28
   m_TagString: Untagged
@@ -243,6 +244,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &61133495
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61133490}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &116047238
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +272,7 @@ GameObject:
   - component: {fileID: 116047241}
   - component: {fileID: 116047240}
   - component: {fileID: 116047239}
+  - component: {fileID: 116047243}
   m_Layer: 0
   m_Name: Bot1
   m_TagString: Untagged
@@ -363,6 +381,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &116047243
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116047238}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &219504534
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +573,7 @@ GameObject:
   - component: {fileID: 231193469}
   - component: {fileID: 231193468}
   - component: {fileID: 231193467}
+  - component: {fileID: 231193471}
   m_Layer: 0
   m_Name: Bot10
   m_TagString: Untagged
@@ -647,6 +682,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &231193471
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231193466}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &238371541
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +710,7 @@ GameObject:
   - component: {fileID: 238371544}
   - component: {fileID: 238371543}
   - component: {fileID: 238371542}
+  - component: {fileID: 238371546}
   m_Layer: 0
   m_Name: Bot27
   m_TagString: Untagged
@@ -767,6 +819,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &238371546
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 238371541}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &386554703
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +847,7 @@ GameObject:
   - component: {fileID: 386554706}
   - component: {fileID: 386554705}
   - component: {fileID: 386554704}
+  - component: {fileID: 386554708}
   m_Layer: 0
   m_Name: Bot21
   m_TagString: Untagged
@@ -887,6 +956,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &386554708
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386554703}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &443562446
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,6 +984,7 @@ GameObject:
   - component: {fileID: 443562449}
   - component: {fileID: 443562448}
   - component: {fileID: 443562447}
+  - component: {fileID: 443562451}
   m_Layer: 0
   m_Name: Bot25
   m_TagString: Untagged
@@ -1007,6 +1093,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &443562451
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443562446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &457549151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1203,7 @@ GameObject:
   - component: {fileID: 489274114}
   - component: {fileID: 489274113}
   - component: {fileID: 489274112}
+  - component: {fileID: 489274116}
   m_Layer: 0
   m_Name: Bot19
   m_TagString: Untagged
@@ -1209,6 +1312,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &489274116
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489274111}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1635,7 @@ GameObject:
   - component: {fileID: 907774615}
   - component: {fileID: 907774614}
   - component: {fileID: 907774613}
+  - component: {fileID: 907774617}
   m_Layer: 0
   m_Name: Bot12
   m_TagString: Untagged
@@ -1624,6 +1744,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &907774617
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907774612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &911307198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,6 +1772,7 @@ GameObject:
   - component: {fileID: 911307201}
   - component: {fileID: 911307200}
   - component: {fileID: 911307199}
+  - component: {fileID: 911307203}
   m_Layer: 0
   m_Name: Bot17
   m_TagString: Untagged
@@ -1744,6 +1881,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &911307203
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911307198}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &945201378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,6 +1909,7 @@ GameObject:
   - component: {fileID: 945201381}
   - component: {fileID: 945201380}
   - component: {fileID: 945201379}
+  - component: {fileID: 945201383}
   m_Layer: 0
   m_Name: Bot9
   m_TagString: Untagged
@@ -1864,6 +2018,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &945201383
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945201378}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1002333004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,6 +2128,7 @@ GameObject:
   - component: {fileID: 1004659232}
   - component: {fileID: 1004659231}
   - component: {fileID: 1004659230}
+  - component: {fileID: 1004659234}
   m_Layer: 0
   m_Name: Bot4
   m_TagString: Untagged
@@ -2066,6 +2237,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1004659234
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004659229}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1042630944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,6 +2265,7 @@ GameObject:
   - component: {fileID: 1042630947}
   - component: {fileID: 1042630946}
   - component: {fileID: 1042630945}
+  - component: {fileID: 1042630949}
   m_Layer: 0
   m_Name: Bot23
   m_TagString: Untagged
@@ -2186,6 +2374,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1042630949
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042630944}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1089272119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,6 +2519,7 @@ GameObject:
   - component: {fileID: 1122487846}
   - component: {fileID: 1122487845}
   - component: {fileID: 1122487844}
+  - component: {fileID: 1122487848}
   m_Layer: 0
   m_Name: Bot20
   m_TagString: Untagged
@@ -2423,6 +2628,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1122487848
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122487843}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1261499335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2435,6 +2656,7 @@ GameObject:
   - component: {fileID: 1261499338}
   - component: {fileID: 1261499337}
   - component: {fileID: 1261499336}
+  - component: {fileID: 1261499340}
   m_Layer: 0
   m_Name: Bot22
   m_TagString: Untagged
@@ -2543,6 +2765,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1261499340
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261499335}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1280289307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2555,6 +2793,7 @@ GameObject:
   - component: {fileID: 1280289310}
   - component: {fileID: 1280289309}
   - component: {fileID: 1280289308}
+  - component: {fileID: 1280289312}
   m_Layer: 0
   m_Name: Bot3
   m_TagString: Untagged
@@ -2663,6 +2902,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1280289312
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280289307}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1305794942
 GameObject:
   m_ObjectHideFlags: 0
@@ -2921,6 +3176,7 @@ GameObject:
   - component: {fileID: 1468410937}
   - component: {fileID: 1468410936}
   - component: {fileID: 1468410935}
+  - component: {fileID: 1468410939}
   m_Layer: 0
   m_Name: Bot14
   m_TagString: Untagged
@@ -3029,6 +3285,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1468410939
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468410934}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1559040167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3041,6 +3313,7 @@ GameObject:
   - component: {fileID: 1559040170}
   - component: {fileID: 1559040169}
   - component: {fileID: 1559040168}
+  - component: {fileID: 1559040172}
   m_Layer: 0
   m_Name: Bot16
   m_TagString: Untagged
@@ -3149,6 +3422,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1559040172
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559040167}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1565821312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,6 +3450,7 @@ GameObject:
   - component: {fileID: 1565821315}
   - component: {fileID: 1565821314}
   - component: {fileID: 1565821313}
+  - component: {fileID: 1565821317}
   m_Layer: 0
   m_Name: Bot26
   m_TagString: Untagged
@@ -3269,6 +3559,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1565821317
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565821312}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1613143570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3587,7 @@ GameObject:
   - component: {fileID: 1613143573}
   - component: {fileID: 1613143572}
   - component: {fileID: 1613143571}
+  - component: {fileID: 1613143575}
   m_Layer: 0
   m_Name: Bot11
   m_TagString: Untagged
@@ -3389,6 +3696,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1613143575
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613143570}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1626753793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,6 +3724,7 @@ GameObject:
   - component: {fileID: 1626753796}
   - component: {fileID: 1626753795}
   - component: {fileID: 1626753794}
+  - component: {fileID: 1626753798}
   m_Layer: 0
   m_Name: Bot13
   m_TagString: Untagged
@@ -3509,6 +3833,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1626753798
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626753793}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1669226826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3521,6 +3861,7 @@ GameObject:
   - component: {fileID: 1669226829}
   - component: {fileID: 1669226828}
   - component: {fileID: 1669226827}
+  - component: {fileID: 1669226831}
   m_Layer: 0
   m_Name: Bot8
   m_TagString: Untagged
@@ -3629,6 +3970,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1669226831
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669226826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1718993911
 GameObject:
   m_ObjectHideFlags: 0
@@ -3723,6 +4080,7 @@ GameObject:
   - component: {fileID: 1778375510}
   - component: {fileID: 1778375509}
   - component: {fileID: 1778375508}
+  - component: {fileID: 1778375512}
   m_Layer: 0
   m_Name: Bot1
   m_TagString: Untagged
@@ -3831,6 +4189,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1778375512
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778375507}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1797257033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,6 +4416,7 @@ GameObject:
   - component: {fileID: 1840236729}
   - component: {fileID: 1840236728}
   - component: {fileID: 1840236727}
+  - component: {fileID: 1840236731}
   m_Layer: 0
   m_Name: Bot5
   m_TagString: Untagged
@@ -4150,6 +4525,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1840236731
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840236726}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1857446766
 GameObject:
   m_ObjectHideFlags: 0
@@ -4162,6 +4553,7 @@ GameObject:
   - component: {fileID: 1857446769}
   - component: {fileID: 1857446768}
   - component: {fileID: 1857446767}
+  - component: {fileID: 1857446771}
   m_Layer: 0
   m_Name: Bot6
   m_TagString: Untagged
@@ -4270,6 +4662,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1857446771
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857446766}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1886565593
 GameObject:
   m_ObjectHideFlags: 0
@@ -4282,6 +4690,7 @@ GameObject:
   - component: {fileID: 1886565596}
   - component: {fileID: 1886565595}
   - component: {fileID: 1886565594}
+  - component: {fileID: 1886565598}
   m_Layer: 0
   m_Name: Bot24
   m_TagString: Untagged
@@ -4390,6 +4799,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1886565598
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1886565593}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1919220769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,6 +4827,7 @@ GameObject:
   - component: {fileID: 1919220772}
   - component: {fileID: 1919220771}
   - component: {fileID: 1919220770}
+  - component: {fileID: 1919220774}
   m_Layer: 0
   m_Name: Bot15
   m_TagString: Untagged
@@ -4510,6 +4936,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1919220774
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919220769}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1959442288
 GameObject:
   m_ObjectHideFlags: 0
@@ -4605,7 +5047,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4750,6 +5192,7 @@ GameObject:
   - component: {fileID: 2057085276}
   - component: {fileID: 2057085275}
   - component: {fileID: 2057085274}
+  - component: {fileID: 2057085278}
   m_Layer: 0
   m_Name: Bot7
   m_TagString: Untagged
@@ -4858,6 +5301,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2057085278
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057085273}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &2087519075
 GameObject:
   m_ObjectHideFlags: 0

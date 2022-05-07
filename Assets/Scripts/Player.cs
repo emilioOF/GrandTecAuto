@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class Player : MonoBehaviour
 {
@@ -44,5 +45,10 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rigVehicle.velocity = new Vector2(vehicle.currentSpeed(),0); 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
