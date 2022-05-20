@@ -14,17 +14,13 @@ public class Bot : MonoBehaviour
     void Start()
     {
         vehicle = new Vehicle(speedIndex, laneIndex, direction);
-        transform.position = new Vector3(transform.position.x, vehicle.currentLane(), 0);
-        rigVehicle = gameObject.GetComponent<Rigidbody2D>(); 
-    }
+        rigVehicle = gameObject.GetComponent<Rigidbody2D>();
 
-    void Update()
-    {
-        
+        transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), 0);
     }
 
     private void FixedUpdate()
     {
-        rigVehicle.velocity = new Vector2(vehicle.currentSpeed(),0); 
+        rigVehicle.velocity = vehicle.currentSpeed();  
     }
 }

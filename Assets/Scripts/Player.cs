@@ -7,10 +7,11 @@ public class Player : MonoBehaviour
 {
     public int speedIndex;
     public int laneIndex;
+    public bool direction;
 
     Vehicle vehicle;
-    Rigidbody2D rigVehicle; 
-
+    Rigidbody2D rigVehicle;
+    
     void Start()
     {
         vehicle = new Vehicle(speedIndex, laneIndex, true);
@@ -21,34 +22,34 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            vehicle.modSpeed(1);
+            vehicle.increaseSpeed();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            vehicle.modSpeed(-1);
+            vehicle.decreaseSpeed();
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            vehicle.modLane(-1);
+            vehicle.moveLaneUp();
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            vehicle.modLane(1);
+            vehicle.moveLaneDown();
         }
 
-        transform.position = new Vector3(transform.position.x, vehicle.currentLane(), 0); 
+        transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), 0); 
     }
 
     private void FixedUpdate()
     {
-        rigVehicle.velocity = new Vector2(vehicle.currentSpeed(),0); 
+        rigVehicle.velocity = vehicle.currentSpeed(); 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("PlayScene");
     }
 }
