@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Vehicle
 {
-    private int[] speeds = {3, 10, 20};
-    private float[] lanes = { -4.0f, -1.4f, 1.47f, 4.0f };
+    private int[] speeds = {6, 10, 15, 20, 25};
+    private float[] lanes; 
     private int speedIndex ;
     private int laneIndex;
     private bool direction;
@@ -13,22 +13,17 @@ public class Vehicle
         this.speedIndex = speedIndex;
         this.laneIndex = laneIndex; 
         this.direction = direction;
+        lanes = GameController.Lanes; 
     }
 
     public void increaseSpeed()
     {
-        if (speedIndex < speeds.Length-1)
-        {
-            speedIndex += 1; 
-        }
+        if (speedIndex < speeds.Length-1) speedIndex += 1; 
     }
 
     public void decreaseSpeed()
     {
-        if (speedIndex > 0)
-        {
-            speedIndex -= 1;
-        }
+        if (speedIndex > 0) speedIndex -= 1;
     }
                      
     public Vector2 currentSpeed()
@@ -38,18 +33,12 @@ public class Vehicle
 
     public void moveLaneUp()
     {
-        if (laneIndex < lanes.Length - 1)
-        {
-            laneIndex += 1; 
-        }
+        if (laneIndex < lanes.Length - 1) laneIndex += 1; 
     }
 
     public void moveLaneDown()
     {
-        if (laneIndex > 0)
-        {
-            laneIndex -= 1;
-        }
+        if (laneIndex > 0) laneIndex -= 1; 
     }
 
     public float currentPositionY()

@@ -4,23 +4,26 @@ using UnityEngine;
 
 public class Bot : MonoBehaviour
 {
-    public int speedIndex;
+    public float speed;
     public int laneIndex;
-    public bool direction; 
 
-    Vehicle vehicle;
+    private float[] lanes; 
+
     Rigidbody2D rigVehicle; 
 
     void Start()
     {
-        vehicle = new Vehicle(speedIndex, laneIndex, direction);
+        lanes = GameController.Lanes; 
         rigVehicle = gameObject.GetComponent<Rigidbody2D>();
 
-        transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), 0);
+        transform.position = new Vector3(transform.position.x, lanes[laneIndex], transform.position.z);
+
+        GetComponent<SpriteRenderer>().color = Random.ColorHSV(); 
     }
 
     private void FixedUpdate()
     {
-        rigVehicle.velocity = vehicle.currentSpeed();  
+        rigVehicle.velocity = Vector2.right * speed;  
     }
+
 }
