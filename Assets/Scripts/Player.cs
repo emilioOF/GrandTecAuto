@@ -7,15 +7,14 @@ public class Player : MonoBehaviour
 {
     public int speedIndex;
     public int laneIndex;
-    public bool direction;
 
     Vehicle vehicle;
-    Rigidbody2D rigVehicle;
+    Rigidbody2D rigVehicle; 
     
     void Start()
     {
-        vehicle = new Vehicle(speedIndex, laneIndex, true);
-        rigVehicle = gameObject.GetComponent<Rigidbody2D>(); 
+        vehicle = new Vehicle(speedIndex, laneIndex);
+        rigVehicle = GetComponent<Rigidbody2D>(); 
     }
 
     void Update()
@@ -39,8 +38,8 @@ public class Player : MonoBehaviour
         {
             vehicle.moveLaneDown();
         }
-
-        transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), 0); 
+       
+        transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), 0);
     }
 
     private void FixedUpdate()
@@ -48,8 +47,9 @@ public class Player : MonoBehaviour
         rigVehicle.velocity = vehicle.currentSpeed(); 
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene("PlayScene");
+        GameController.endGame(); 
     }
 }

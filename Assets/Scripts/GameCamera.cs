@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class GameCamera : MonoBehaviour
 {
-    Transform playerTran; 
+    private Transform playerTran;
+    public float offSet;  
 
     void Start()
     {
@@ -13,6 +14,6 @@ public class Camera : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(playerTran.position.x, 0, -10); 
-    }
+        transform.position = new Vector3(playerTran.position.x + offSet, 0, -10); 
+    } 
 }
