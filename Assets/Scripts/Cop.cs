@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cop : MonoBehaviour
+public class Cop: MonoBehaviour
 {
     public float speedIncreaseRate;
     public float initialDistance;
@@ -14,8 +14,7 @@ public class Cop : MonoBehaviour
     private float lastTime;
     private bool finalSpeed; 
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         playerTran = GameObject.Find("Player").transform;
         speedIndex = 0;
@@ -24,7 +23,6 @@ public class Cop : MonoBehaviour
         finalSpeed = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         increaseSpeed();
@@ -43,12 +41,7 @@ public class Cop : MonoBehaviour
             }
         }
     }
-
-    private float distanceToPlayer()
-    {
-        return playerTran.position.x - xPosition; 
-    }
-
+ 
     private bool hasCrashed()
     {
         return distanceToPlayer() < 1; 
@@ -69,9 +62,13 @@ public class Cop : MonoBehaviour
         finalSpeed = true;
     }
 
-    public string distanceToPlayerStr()
+    public float distanceToPlayer()
     {
-        int disInt = (int)distanceToPlayer();
-        return disInt.ToString();
+        return playerTran.position.x - xPosition;
+    }
+
+    public void pushBack(float dis)
+    {
+        xPosition -= dis; 
     }
 }

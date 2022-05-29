@@ -30,6 +30,11 @@ public class Vehicle
         return Vector2.right * speeds[speedIndex];  
     }
 
+    public int currentSpeedInt()
+    {
+        return speeds[speedIndex]; 
+    }
+
     public void moveLaneUp()
     {
         if (laneIndex < lanes.Length - 1) laneIndex += 1; 
@@ -43,5 +48,10 @@ public class Vehicle
     public float currentPositionY()
     {
         return lanes[laneIndex]; 
+    }
+
+    public int getLaneIndex()
+    {
+        return laneIndex; 
     }
 }

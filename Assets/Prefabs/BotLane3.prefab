@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8626355653598672126}
   - component: {fileID: 8626355653598672001}
   - component: {fileID: -962002999589467851}
-  - component: {fileID: 8626355653598672127}
   - component: {fileID: 4604512717362796464}
+  - component: {fileID: 8626355653598672127}
   m_Layer: 0
   m_Name: BotLane3
   m_TagString: bot
@@ -111,20 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8626355653598672127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8626355653598672000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b1752787f174ef0b7d4cd8c86752ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -16
-  laneIndex: 2
 --- !u!50 &4604512717362796464
 Rigidbody2D:
   serializedVersion: 4
@@ -146,3 +132,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8626355653598672127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8626355653598672000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b1752787f174ef0b7d4cd8c86752ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -16
+  laneIndex: 2
