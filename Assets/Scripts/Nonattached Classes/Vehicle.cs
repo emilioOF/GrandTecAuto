@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Vehicle
 {
-    private int[] speeds = {5, 10, 15, 20, 25};
+    private int[] speeds = {5, 10, 15, 20, 25, 30};
     // 2, 4, 8, 16
     private float[] lanes; 
-    private int speedIndex ;
+    private int speedIndex;
     private int laneIndex;
     
     public Vehicle(int speedIndex, int laneIndex)
@@ -27,12 +27,17 @@ public class Vehicle
                      
     public Vector2 currentSpeed()
     {
-        return Vector2.right * speeds[speedIndex];  
+        return Vector2.right * speeds[speedIndex] * GameController.SpeedMaster;  
     }
 
     public int currentSpeedInt()
     {
         return speeds[speedIndex]; 
+    }
+
+    public bool inLastSpeed()
+    {
+        return (speedIndex + 1) == speeds.Length; 
     }
 
     public void moveLaneUp()
@@ -48,6 +53,11 @@ public class Vehicle
     public float currentPositionY()
     {
         return lanes[laneIndex]; 
+    }
+
+    public int getSpeedIndex()
+    {
+        return speedIndex; 
     }
 
     public int getLaneIndex()

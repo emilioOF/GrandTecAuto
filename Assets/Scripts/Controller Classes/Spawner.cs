@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject[] bots; 
-    public float baseSpawnRate;
+    public float[] spawnRates;
 
     private float lastPosX;
     private Chooser chooser;
@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position.x - lastPosX) > currentSpawnRate())
+        if ((transform.position.x - lastPosX) > spawnRates[vehicle.getSpeedIndex()])
         {
             createBot();
             lastPosX = transform.position.x; 
@@ -32,11 +32,5 @@ public class Spawner : MonoBehaviour
     private void createBot()
     {
         Instantiate(bots[chooser.choose()], transform.position, transform.rotation);
-    }
-
-    private float currentSpawnRate()
-    {
-        // 5 es el valor de la primera velocidad del jugador
-        return baseSpawnRate - ((vehicle.currentSpeedInt() / 5) - 1);
     }
 }

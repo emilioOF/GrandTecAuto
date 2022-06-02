@@ -7,7 +7,7 @@ public class Cop: MonoBehaviour
     public float speedIncreaseRate;
     public float initialDistance;
 
-    private int[] speeds = {4, 9, 14};
+    private int[] speeds = {6, 11, 16, 21};
     private Transform playerTran;
     private int speedIndex;
     private float xPosition;
@@ -49,7 +49,7 @@ public class Cop: MonoBehaviour
 
     private void increaseSpeed()
     {
-        xPosition += speeds[speedIndex] * Time.deltaTime;
+        xPosition += speeds[speedIndex] * Time.deltaTime * GameController.SpeedMaster;
     }
 
     private void upSpeed()

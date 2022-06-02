@@ -11,18 +11,23 @@ public class Player : MonoBehaviour
     private Vehicle vehicle;
     private Battery battery;
     private Rigidbody2D rigVehicle;
-    private Cop cop; 
+    private Cop cop;
+    private ColorController colorController; 
+    private bool slowMotionOn; 
     
     void Awake()
     {
         vehicle = new Vehicle(speedIndex, laneIndex);
         battery = new Battery(); 
-        rigVehicle = GetComponent<Rigidbody2D>(); 
+        rigVehicle = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        cop = transform.Find("Cop").GetComponent<Cop>();  
+        cop = transform.Find("Cop").GetComponent<Cop>();
+        colorController = GameObject.Find("Lanes").GetComponent<ColorController>(); 
+        Time.timeScale = 1f;
+        slowMotionOn = false; 
     }
 
     void Update()
@@ -47,19 +52,38 @@ public class Player : MonoBehaviour
             vehicle.moveLaneDown();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             electricAttack(); 
         }
 
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (!slowMotionOn)
+            {
+                colorController.slowMoAnimation(true);
+            } else
+            {
+                colorController.slowMoAnimation(false);
+            }
+            slowMotion();
+        }
+
         transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), 0);
 
-        if (vehicle.getLaneIndex() < 2)
+        if (slowMotionOn)
         {
-            battery.discharge(vehicle.currentSpeedInt());
+            battery.discharge(20);
         } else
         {
-            battery.charge(vehicle.currentSpeedInt());
+            if (vehicle.getLaneIndex() < 2)
+            {
+                battery.discharge(vehicle.currentSpeedInt());
+            }
+            else
+            {
+                battery.charge(vehicle.currentSpeedInt());
+            }
         }
     }
 
@@ -67,7 +91,6 @@ public class Player : MonoBehaviour
     {
         rigVehicle.velocity = vehicle.currentSpeed(); 
     }
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -85,7 +108,19 @@ public class Player : MonoBehaviour
 
     private void slowMotion()
     {
-        
+        slowMotionOn = !slowMotionOn; 
+        if (slowMotionOn)
+        {
+            GameController.SpeedMaster = 0.2f; 
+        } else
+        {
+            GameController.SpeedMaster = 1f;
+        }
+    }
+
+    public bool getSlowMotionStatus()
+    {
+        return slowMotionOn; 
     }
 
     public Vehicle getPlayerVehicle()

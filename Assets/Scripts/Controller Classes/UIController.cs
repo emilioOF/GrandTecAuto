@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         disCopPlayer.text = floatToString(cop.distanceToPlayer());
-        batteryPlayer.text = floatToString(battery.currentBattery()); 
+        batteryPlayer.text = floatToString(battery.currentBattery());
     }
 
     private string floatToString(float value)

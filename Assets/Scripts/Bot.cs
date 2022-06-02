@@ -7,15 +7,17 @@ public class Bot : MonoBehaviour
     public float speed;
     public int laneIndex;
 
-    private float[] lanes;
-    Rigidbody2D rigBot; 
+    private Rigidbody2D rigBot;
 
     void Start()
     {
-        lanes = GameController.Lanes;
         rigBot = GetComponent<Rigidbody2D>(); 
-        transform.position = new Vector3(transform.position.x, lanes[laneIndex], transform.position.z);
-        GetComponent<SpriteRenderer>().color = Random.ColorHSV();
-        rigBot.velocity = Vector3.right * speed;
+        transform.position = new Vector3(transform.position.x, GameController.Lanes[laneIndex], transform.position.z);
+        GetComponent<SpriteRenderer>().color = GameObject.Find("Lanes").GetComponent<ColorController>().currentCarColor();
+    }
+
+    private void FixedUpdate()
+    {
+        rigBot.velocity = Vector3.right * speed * GameController.SpeedMaster;
     }
 }
