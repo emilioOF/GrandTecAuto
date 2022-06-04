@@ -3,7 +3,8 @@ using UnityEngine;
 public class Vehicle
 {
     private int[] speeds = {5, 10, 15, 20, 25, 30};
-    // 2, 4, 8, 16
+    // Bot: 2, 4, 8, 16
+    // Cop: 6, 11, 16, 21
     private float[] lanes; 
     private int speedIndex;
     private int laneIndex;

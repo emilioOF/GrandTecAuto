@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RoadController: MonoBehaviour
@@ -10,14 +8,12 @@ public class RoadController: MonoBehaviour
     private int last; 
     private float roadWidth; 
 
-    // Start is called before the first frame update
     void Start()
     {
         last = roads.Length - 1; 
         roadWidth = roads[0].GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isLastVisible())

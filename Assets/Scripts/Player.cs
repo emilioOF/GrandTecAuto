@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Collections; 
 using UnityEngine;
-using UnityEngine.SceneManagement; 
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +9,11 @@ public class Player : MonoBehaviour
     private Vehicle vehicle;
     private Battery battery;
     private Rigidbody2D rigVehicle;
+    private SpriteRenderer carColor;
+    private SpriteRenderer carFlame;
+    private PlayerCircle playerCircle;
     private Cop cop;
-    private ColorController colorController; 
-    private bool slowMotionOn; 
+    private bool slowMotionOn;
     
     void Awake()
     {
@@ -24,8 +24,11 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        cop = transform.Find("Cop").GetComponent<Cop>();
-        colorController = GameObject.Find("Lanes").GetComponent<ColorController>(); 
+        carColor = GetComponent<SpriteRenderer>();
+        carFlame = transform.Find("CarFlame").GetComponent<SpriteRenderer>(); 
+        playerCircle = transform.Find("PlayerCircle").GetComponent<PlayerCircle>();
+        cop = GameObject.Find("Cop").GetComponent<Cop>();
+
         Time.timeScale = 1f;
         slowMotionOn = false; 
     }
@@ -34,6 +37,10 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
+            if (!vehicle.inLastSpeed())
+            {
+                StartCoroutine(carFlameAnimation()); 
+            }
             vehicle.increaseSpeed();
         }
 
@@ -61,19 +68,19 @@ public class Player : MonoBehaviour
         {
             if (!slowMotionOn)
             {
-                colorController.slowMoAnimation(true);
+                playerCircle.expandCircle(true); 
             } else
             {
-                colorController.slowMoAnimation(false);
+                playerCircle.expandCircle(false);
             }
             slowMotion();
         }
 
-        transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), 0);
+        transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), transform.position.z);
 
         if (slowMotionOn)
         {
-            battery.discharge(20);
+            battery.discharge(40);
         } else
         {
             if (vehicle.getLaneIndex() < 2)
@@ -85,6 +92,8 @@ public class Player : MonoBehaviour
                 battery.charge(vehicle.currentSpeedInt());
             }
         }
+
+        updateCarColor(); 
     }
 
     private void FixedUpdate()
@@ -92,17 +101,24 @@ public class Player : MonoBehaviour
         rigVehicle.velocity = vehicle.currentSpeed(); 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void updateCarColor()
     {
-        GameController.endGame(); 
-    }
+        if (battery.canUseElectricAttack())
+        {
+            carColor.color = Colors.BotBlue; 
 
+        } else
+        {
+            carColor.color = Color.white; 
+        }
+    }
+   
     private void electricAttack()
     {
-        if (battery.currentBattery() >= 60)
+        if (battery.canUseElectricAttack())
         {
-            battery.strongDischarge(25f);
-            cop.pushBack(20f); 
+            battery.strongDischarge(30f);
+            cop.pushBack(10f); 
         }
     }
 
@@ -132,4 +148,37 @@ public class Player : MonoBehaviour
     {
         return battery; 
     }
+
+    private IEnumerator carFlameAnimation()
+    {
+        for (float i = 0; i < 1; i+= 0.1f)
+        {
+            carFlame.color = new Color(1, 1, 1, i);
+            yield return null; 
+        }
+        carFlame.color = new Color(1, 1, 1, 0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "bot")
+        {
+            GameController.endGame();
+        }
+        else if (collision.gameObject.tag == "botEnergy")
+        {
+            Destroy(collision.gameObject); 
+            battery.fillBattery();
+        }
+    }
 }
+
+// Posición en z de los elementos del juego
+// -10: Camera
+// -2: VelocityMeter
+// -1.1: car sprites 
+// -1: Player, Bots, Spawner, Destroyer, Controllers, Cop, EnergyBar
+// 0: Roads
+// 1: CopLights
+// 1.5: PlayerCircle
+// 2: Lanes 

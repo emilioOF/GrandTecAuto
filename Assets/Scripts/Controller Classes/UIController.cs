@@ -1,34 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; 
 
 public class UIController : MonoBehaviour
 {
     private Cop cop;
-    private Battery battery; 
-    private Text disCopPlayer;
-    private Text batteryPlayer;
+    private Vehicle vehicle; 
+    private Battery battery;
+    private Transform energyBar;
+    private Text velocityMeterNum; 
+    private float cameraWidth; 
 
-    // Start is called before the first frame update
     void Start()
     {
         cop = GameObject.Find("Cop").GetComponent<Cop>();
+        vehicle = GameObject.Find("Player").GetComponent<Player>().getPlayerVehicle(); 
         battery = GameObject.Find("Player").GetComponent<Player>().getPlayerBattery();
-        disCopPlayer = transform.Find("DisCopPlayer").GetComponent<Text>();
-        batteryPlayer = transform.Find("BatteryPlayer").GetComponent<Text>();
+        energyBar = GameObject.Find("EnergyBar").transform;
+        velocityMeterNum = transform.Find("VelocityMeterNum").GetComponent<Text>(); 
+        cameraWidth = GameObject.Find("GameCamera").GetComponent<GameCamera>().CameraWidth; 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        disCopPlayer.text = floatToString(cop.distanceToPlayer());
-        batteryPlayer.text = floatToString(battery.currentBattery());
+        velocityMeterNum.text = toString(vehicle.getSpeedIndex() + 1); 
+        controlEnergyBar(); 
     }
 
-    private string floatToString(float value)
+    private string toString(float value)
     {
         int valueInt = (int)value;
         return valueInt.ToString(); 
+    }
+
+    private string toString(int value)
+    {
+        return value.ToString();
+    }
+
+    private void controlEnergyBar()
+    {
+        energyBar.Find("EnergyBarFill").GetComponent<SpriteRenderer>().color = battery.currentBatteryColor(false);   
+        energyBar.localScale = new Vector3(cameraWidth * (battery.currentBattery()/100), 1, 0); 
     }
 }

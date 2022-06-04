@@ -11,7 +11,6 @@ public class Spawner : MonoBehaviour
     private Chooser chooser;
     private Vehicle vehicle;
 
-    // Start is called before the first frame update
     void Start()
     {
         lastPosX = transform.position.x;
@@ -19,7 +18,6 @@ public class Spawner : MonoBehaviour
         vehicle = GameObject.Find("Player").GetComponent<Player>().getPlayerVehicle();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if ((transform.position.x - lastPosX) > spawnRates[vehicle.getSpeedIndex()])
