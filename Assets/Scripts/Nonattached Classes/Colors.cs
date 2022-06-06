@@ -11,8 +11,9 @@ public class Colors
     static private readonly int[] electricBlue = { 0, 161, 255 };
     static private readonly int[] electricDarkBlue = { 0, 83, 147 };
     static private readonly int[] slowMotionClover = { 0, 143, 0 };
-    static private readonly int[] botBlue = { 0, 215, 255 };
-    // static private readonly int[] velocityMercury = { 235, 235, 235 };
+    static private readonly int[] skyBlue = { 0, 215, 255 };
+    static private readonly int[] batteryEndRed = { 148, 17, 0 };
+
 
     static private float startingRoadColor = 213;
 
@@ -29,6 +30,16 @@ public class Colors
     {
         float nColorValue = colorValue / 255;
         return new Color(nColorValue, nColorValue, nColorValue);
+    }
+
+    static public Color makeAlphaZero(Color color)
+    {
+        return new Color(color.r, color.g, color.b, 0); 
+    }
+
+    static public Color makeAlphaOne(Color color)
+    {
+        return new Color(color.r, color.g, color.b, 1);
     }
 
     static public Color CopRed
@@ -66,9 +77,14 @@ public class Colors
         get { return rgbToColor(slowMotionClover); }
     }
 
-    static public Color BotBlue
+    static public Color SkyBlue
     {
-        get { return rgbToColor(botBlue); }
+        get { return rgbToColor(skyBlue); }
+    }
+
+    static public Color BatteryEndRed
+    {
+        get { return rgbToColor(batteryEndRed); }
     }
 
     static public float StartingRoadColor
@@ -86,6 +102,5 @@ public class Colors
         {
             return new Color(1, 1, 1);
         }
-
     }
 }

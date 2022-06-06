@@ -3,27 +3,33 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    private Cop cop;
     private Vehicle vehicle; 
     private Battery battery;
+    private Transform velocityBar;
+    private SpriteRenderer velocityBarFill; 
     private Transform energyBar;
-    private Text velocityMeterNum; 
+    private SpriteRenderer energyBarFill;
+    private Score score; 
     private float cameraWidth; 
 
     void Start()
     {
-        cop = GameObject.Find("Cop").GetComponent<Cop>();
         vehicle = GameObject.Find("Player").GetComponent<Player>().getPlayerVehicle(); 
         battery = GameObject.Find("Player").GetComponent<Player>().getPlayerBattery();
+        velocityBar = GameObject.Find("VelocityBar").transform;
+        velocityBarFill = velocityBar.Find("VelocityBarFill").GetComponent<SpriteRenderer>(); 
         energyBar = GameObject.Find("EnergyBar").transform;
-        velocityMeterNum = transform.Find("VelocityMeterNum").GetComponent<Text>(); 
+        energyBarFill = energyBar.Find("EnergyBarFill").GetComponent<SpriteRenderer>();
+
+        score = new Score(GameObject.Find("Player").transform); 
+
         cameraWidth = GameObject.Find("GameCamera").GetComponent<GameCamera>().CameraWidth; 
     }
 
     void Update()
     {
-        velocityMeterNum.text = toString(vehicle.getSpeedIndex() + 1); 
-        controlEnergyBar(); 
+        controlVelocityBar(); 
+        controlEnergyBar();
     }
 
     private string toString(float value)
@@ -37,9 +43,16 @@ public class UIController : MonoBehaviour
         return value.ToString();
     }
 
+    private void controlVelocityBar()
+    {
+        float speedIndex = (float)vehicle.getSpeedIndex();
+        float numSpeeds = (float)vehicle.numSpeeds();
+        velocityBar.localScale = new Vector3(cameraWidth * ((speedIndex + 1)/numSpeeds), 1, 0); 
+    }
+
     private void controlEnergyBar()
     {
-        energyBar.Find("EnergyBarFill").GetComponent<SpriteRenderer>().color = battery.currentBatteryColor(false);   
+        energyBarFill.color = battery.currentBatteryColor(false);   
         energyBar.localScale = new Vector3(cameraWidth * (battery.currentBattery()/100), 1, 0); 
     }
 }

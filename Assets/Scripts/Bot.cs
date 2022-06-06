@@ -28,7 +28,7 @@ public class Bot : MonoBehaviour
     {
         if (Random.Range(1, 36) == 1)
         {
-            GetComponent<SpriteRenderer>().color = Colors.BotBlue; 
+            GetComponent<SpriteRenderer>().color = Colors.SkyBlue; 
             gameObject.tag = "botEnergy"; 
         } else
         {

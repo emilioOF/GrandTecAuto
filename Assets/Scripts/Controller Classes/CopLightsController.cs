@@ -38,7 +38,7 @@ public class CopLightsController : MonoBehaviour
     {
         if (cop.distanceToPlayer() < treshold)
         {
-            return ((treshold - cop.distanceToPlayer()) / treshold) + 0.09f;
+            return ((treshold - cop.distanceToPlayer()) / treshold) + 0.03f;
         } else
         {
             return 0; 

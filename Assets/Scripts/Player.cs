@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer carFlame;
     private PlayerCircle playerCircle;
     private Cop cop;
+    private RoadColorController roadColorController;
     private bool slowMotionOn;
+    
     
     void Awake()
     {
@@ -28,16 +30,16 @@ public class Player : MonoBehaviour
         carFlame = transform.Find("CarFlame").GetComponent<SpriteRenderer>(); 
         playerCircle = transform.Find("PlayerCircle").GetComponent<PlayerCircle>();
         cop = GameObject.Find("Cop").GetComponent<Cop>();
+        roadColorController = GameObject.Find("Lanes").GetComponent<RoadColorController>();
 
-        Time.timeScale = 1f;
-        slowMotionOn = false; 
+        slowMotionOn = false;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (!vehicle.inLastSpeed())
+            if (!vehicle.inLastSpeed() && !vehicle.isSpeedLockOn())
             {
                 StartCoroutine(carFlameAnimation()); 
             }
@@ -61,77 +63,55 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            electricAttack(); 
+            if (battery.canUseElectricAttack())
+            {
+                electricAttack(); 
+            } 
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (!slowMotionOn)
+            if (!slowMotionOn && !vehicle.isSpeedLockOn())
             {
-                playerCircle.expandCircle(true); 
+                startSlowMotion();
             } else
             {
-                playerCircle.expandCircle(false);
+                stopSlowMotion();
             }
-            slowMotion();
         }
 
         transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), transform.position.z);
 
-        if (slowMotionOn)
-        {
-            battery.discharge(40);
-        } else
-        {
-            if (vehicle.getLaneIndex() < 2)
-            {
-                battery.discharge(vehicle.currentSpeedInt());
-            }
-            else
-            {
-                battery.charge(vehicle.currentSpeedInt());
-            }
-        }
+        batteryController();
 
-        updateCarColor(); 
+        carColorController();
+
+        speedLockController();
     }
 
     private void FixedUpdate()
     {
         rigVehicle.velocity = vehicle.currentSpeed(); 
     }
-
-    private void updateCarColor()
-    {
-        if (battery.canUseElectricAttack())
-        {
-            carColor.color = Colors.BotBlue; 
-
-        } else
-        {
-            carColor.color = Color.white; 
-        }
-    }
    
     private void electricAttack()
     {
-        if (battery.canUseElectricAttack())
-        {
-            battery.strongDischarge(30f);
-            cop.pushBack(10f); 
-        }
+        roadColorController.showUpperLanes(); 
+        battery.strongDischarge(30f);
+        cop.pushBack(10f);
+        roadColorController.fadeOutUpperLanes(); 
     }
 
-    private void slowMotion()
+    private void startSlowMotion()
     {
-        slowMotionOn = !slowMotionOn; 
-        if (slowMotionOn)
-        {
-            GameController.SpeedMaster = 0.2f; 
-        } else
-        {
-            GameController.SpeedMaster = 1f;
-        }
+        GameController.SpeedMaster = 0.2f;
+        slowMotionOn = true; 
+    }
+
+    private void stopSlowMotion()
+    {
+        GameController.SpeedMaster = 1f;
+        slowMotionOn = false; 
     }
 
     public bool getSlowMotionStatus()
@@ -148,7 +128,7 @@ public class Player : MonoBehaviour
     {
         return battery; 
     }
-
+   
     private IEnumerator carFlameAnimation()
     {
         for (float i = 0; i < 1; i+= 0.1f)
@@ -171,14 +151,68 @@ public class Player : MonoBehaviour
             battery.fillBattery();
         }
     }
+
+    private void batteryController()
+    {
+        if (slowMotionOn)
+        {
+            battery.discharge(40);
+        }
+        else
+        {
+            if (vehicle.getLaneIndex() < 2)
+            {
+                battery.discharge(vehicle.currentSpeedInt());
+            }
+            else
+            {
+                battery.charge(vehicle.currentSpeedInt());
+            }
+        }
+    }
+
+    private void carColorController()
+    {
+        if (battery.canUseElectricAttack())
+        {
+            carColor.color = Colors.SkyBlue; 
+        }
+        else
+        {
+            if (vehicle.isSpeedLockOn())
+            {
+                carColor.color = Colors.BatteryEndRed; 
+            } else
+            {
+                carColor.color = Color.white; 
+            }
+        }
+    }
+
+    private void speedLockController()
+    {
+        if (battery.currentBattery() <= 0)
+        {
+            vehicle.toggleSpeedLock(true);
+            stopSlowMotion(); 
+        }
+
+        if (vehicle.isSpeedLockOn() && battery.currentBattery() > 20)
+        {
+            vehicle.toggleSpeedLock(false);
+        }
+    }
 }
 
 // Posición en z de los elementos del juego
 // -10: Camera
 // -2: VelocityMeter
 // -1.1: car sprites 
-// -1: Player, Bots, Spawner, Destroyer, Controllers, Cop, EnergyBar
+// -1: Player, Bots, Spawner, Destroyer, Controllers, Cop, EnergyBar, VelocityBar
 // 0: Roads
+// 0.5: PlayerCircle
+// 0.75: Upper Lanes
 // 1: CopLights
-// 1.5: PlayerCircle
-// 2: Lanes 
+// 2: Lanes
+
+

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RoadColorController : MonoBehaviour
@@ -10,6 +11,7 @@ public class RoadColorController : MonoBehaviour
     private Battery battery; 
     private SpriteRenderer leftLane;
     private SpriteRenderer rightLane;
+    private SpriteRenderer upperLanes;
 
     void Start()
     {
@@ -20,9 +22,11 @@ public class RoadColorController : MonoBehaviour
         battery = player.getPlayerBattery(); 
         leftLane = transform.Find("LeftLane").GetComponent<SpriteRenderer>();
         rightLane = transform.Find("RightLane").GetComponent<SpriteRenderer>();
+        upperLanes = transform.Find("UpperLanes").GetComponent<SpriteRenderer>();
 
         leftLane.color = Colors.rgbToColor(Colors.StartingRoadColor);
         rightLane.color = Colors.rgbToColor(Colors.StartingRoadColor);
+        upperLanes.color = Colors.makeAlphaZero(Colors.SkyBlue); 
     }
 
     void Update()
@@ -34,16 +38,43 @@ public class RoadColorController : MonoBehaviour
 
         transform.position = new Vector3(cameraPos.position.x,transform.position.y,transform.position.z);
 
-        if (player.getPlayerVehicle().getLaneIndex() > 1)
+        if (player.getSlowMotionStatus())
         {
-            leftLane.color = battery.currentBatteryColor(true);  
-        }
-        else
+            leftLane.color = Colors.SlowMotionClover;
+            rightLane.color = Colors.SlowMotionClover;
+        } else
         {
-            leftLane.color = Colors.rgbToColor(currentRoadColor);
-        }
+            if (player.getPlayerVehicle().getLaneIndex() > 1)
+            {
+                leftLane.color = battery.currentBatteryColor(true);
+            }
+            else
+            {
+                leftLane.color = Colors.rgbToColor(currentRoadColor);
+            }
 
-        rightLane.color = Colors.rgbToColor(currentRoadColor);
+            rightLane.color = Colors.rgbToColor(currentRoadColor);
+        }
+    }
+
+    public void showUpperLanes()
+    {
+        upperLanes.color = Colors.makeAlphaOne(upperLanes.color);
+    }
+
+    public void fadeOutUpperLanes()
+    {
+        StartCoroutine(fadeOutUpperLanesCR());
+    }
+
+    private IEnumerator fadeOutUpperLanesCR()
+    {
+        for (float alpha = 1; alpha >= 0; alpha -= 0.03f)
+        {
+            upperLanes.color = new Color(upperLanes.color.r, upperLanes.color.g, upperLanes.color.b, alpha);
+            yield return null;
+        }
+        upperLanes.color = new Color(upperLanes.color.r, upperLanes.color.g, upperLanes.color.b, 0);
     }
 
     public Color currentCarColor()

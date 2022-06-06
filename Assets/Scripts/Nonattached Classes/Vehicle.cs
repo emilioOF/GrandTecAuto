@@ -8,7 +8,8 @@ public class Vehicle
     private float[] lanes; 
     private int speedIndex;
     private int laneIndex;
-    
+    private bool speedLockOn; 
+
     public Vehicle(int speedIndex, int laneIndex)
     {
         lanes = GameController.Lanes;
@@ -18,7 +19,7 @@ public class Vehicle
 
     public void increaseSpeed()
     {
-        if (speedIndex < speeds.Length-1) speedIndex += 1; 
+        if (speedIndex < speeds.Length-1 && !speedLockOn) speedIndex += 1; 
     }
 
     public void decreaseSpeed()
@@ -34,6 +35,23 @@ public class Vehicle
     public int currentSpeedInt()
     {
         return speeds[speedIndex]; 
+    }
+
+    public void toggleSpeedLock(bool toggleOn)
+    {
+        if (toggleOn)
+        {
+            speedLockOn = true;
+            speedIndex = 0; 
+        } else
+        {
+            speedLockOn = false; 
+        }
+    }
+
+    public bool isSpeedLockOn()
+    {
+        return speedLockOn; 
     }
 
     public bool inLastSpeed()
@@ -64,5 +82,10 @@ public class Vehicle
     public int getLaneIndex()
     {
         return laneIndex; 
+    }
+
+    public int numSpeeds()
+    {
+        return speeds.Length; 
     }
 }
