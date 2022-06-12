@@ -7,7 +7,7 @@ public class Bot : MonoBehaviour
     public Sprite[] botSprites; 
 
     private Rigidbody2D rigBot;
-    private SpriteRenderer botSprite; 
+    private SpriteRenderer botSprite;
 
     void Start()
     {
@@ -21,18 +21,18 @@ public class Bot : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigBot.velocity = Vector3.right * speed * GameController.SpeedMaster;
+        rigBot.velocity = Vector3.right * speed * GameController.TrafficSpeedMaster;
     }
 
     private void getColorType()
     {
-        if (Random.Range(1, 36) == 1)
+        if (Random.Range(1, 26) == 1 && laneIndex < 2)
         {
             GetComponent<SpriteRenderer>().color = Colors.SkyBlue; 
             gameObject.tag = "botEnergy"; 
         } else
         {
-            GetComponent<SpriteRenderer>().color = GameObject.Find("Lanes").GetComponent<RoadColorController>().currentCarColor();
+            GetComponent<SpriteRenderer>().color = GameObject.Find("Lanes").GetComponent<RoadColorController>().currentTrafficColor();
         }
     }
 

@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] bots; 
     public float[] spawnRates;
+    public int[] weighs; 
 
     private float lastPosX;
     private Chooser chooser;
@@ -14,7 +15,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         lastPosX = transform.position.x;
-        chooser = new Chooser(new int[] {0,1,2,3});
+        chooser = new Chooser(weighs);
         vehicle = GameObject.Find("Player").GetComponent<Player>().getPlayerVehicle();
     }
 

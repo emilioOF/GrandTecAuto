@@ -13,7 +13,8 @@ public class Colors
     static private readonly int[] slowMotionClover = { 0, 143, 0 };
     static private readonly int[] skyBlue = { 0, 215, 255 };
     static private readonly int[] batteryEndRed = { 148, 17, 0 };
-
+    static private readonly int[] grape = { 148, 55, 255 };
+    static private readonly int[] carFinalColor = { 190, 190, 190 };
 
     static private float startingRoadColor = 213;
 
@@ -87,20 +88,18 @@ public class Colors
         get { return rgbToColor(batteryEndRed); }
     }
 
+    static public Color Grape
+    {
+        get { return rgbToColor(grape); }
+    }
+
+    static public Color CarFinalColor
+    {
+        get { return rgbToColor(carFinalColor); }
+    }
+
     static public float StartingRoadColor
     {
         get { return startingRoadColor;  }
-    }
-
-    static public Color carColor(float roadColor)
-    {
-        if (roadColor >= 106.5)
-        {
-            return new Color(0, 0, 0);
-        }
-        else
-        {
-            return new Color(1, 1, 1);
-        }
     }
 }

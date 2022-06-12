@@ -230,6 +230,7 @@ MonoBehaviour:
   speed: 2
   laneIndex: 0
   botSprites:
+  - {fileID: 21300000, guid: d2979b248047943a2aadd6512b1a8cc1, type: 3}
   - {fileID: 21300000, guid: 67416f01946634efc9f5b33e3953649b, type: 3}
   - {fileID: 21300000, guid: 630dd49c880804ee5a05449362c66685, type: 3}
   - {fileID: 21300000, guid: 97f7c5943715f48d08df9242e588f277, type: 3}

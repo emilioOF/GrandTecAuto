@@ -5,12 +5,14 @@ public class Cop: MonoBehaviour
     public float speedIncreaseRate;
     public float initialDistance;
 
-    private int[] speeds = {6, 11, 16, 21};
+    private int[] speeds = {6, 11, 18, 24};
     private Transform playerTran;
     private int speedIndex;
     private float xPosition;
     private float lastTime;
-    private bool finalSpeed; 
+    private bool finalSpeed;
+
+    private UIController uIController; 
 
     void Awake()
     {
@@ -19,22 +21,24 @@ public class Cop: MonoBehaviour
         xPosition = playerTran.position.x - initialDistance;
         lastTime = Time.time;
         finalSpeed = false;
+
+        uIController = GameObject.Find("UI").GetComponent<UIController>(); 
     }
 
     void Update()
     {
-        increaseSpeed();
+        advance();
 
         if (hasCrashed())
         {
-            GameController.endGame(); 
+            playerTran.GetComponent<Player>().endGamePlayer("caught"); 
         }
 
         if (!finalSpeed)
         {
             if ((Time.time - lastTime) > speedIncreaseRate)
             {
-                upSpeed();
+                increaseSpeed();
                 lastTime = Time.time; 
             }
         }
@@ -45,12 +49,12 @@ public class Cop: MonoBehaviour
         return distanceToPlayer() < 1; 
     }
 
-    private void increaseSpeed()
+    private void advance()
     {
-        xPosition += speeds[speedIndex] * Time.deltaTime * GameController.SpeedMaster;
+        xPosition += speeds[speedIndex] * Time.deltaTime * GameController.TrafficSpeedMaster;
     }
 
-    private void upSpeed()
+    private void increaseSpeed()
     {
         if (speedIndex < speeds.Length-1)
         {

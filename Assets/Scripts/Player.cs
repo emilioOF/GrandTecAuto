@@ -11,12 +11,22 @@ public class Player : MonoBehaviour
     private Rigidbody2D rigVehicle;
     private SpriteRenderer carColor;
     private SpriteRenderer carFlame;
-    private PlayerCircle playerCircle;
+    private SpriteRenderer carSideAnimationLeft;
+    private SpriteRenderer carSideAnimationRight;
     private Cop cop;
     private RoadColorController roadColorController;
     private bool slowMotionOn;
-    
-    
+
+    private float score;
+    private float finalScore; 
+    private ScoreData scoreData;
+    private float initialTime;
+    private float finalTime;
+
+    private UIController uIController;
+
+    private User user; 
+ 
     void Awake()
     {
         vehicle = new Vehicle(speedIndex, laneIndex);
@@ -26,18 +36,31 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        carColor = GetComponent<SpriteRenderer>();
-        carFlame = transform.Find("CarFlame").GetComponent<SpriteRenderer>(); 
-        playerCircle = transform.Find("PlayerCircle").GetComponent<PlayerCircle>();
+        carColor = transform.Find("PlayerSquare").GetComponent<SpriteRenderer>();
+        carFlame = transform.Find("CarFlame").GetComponent<SpriteRenderer>();
+        carSideAnimationLeft = transform.Find("CarSideAnimationLeft").GetComponent<SpriteRenderer>();
+        carSideAnimationRight = transform.Find("CarSideAnimationRight").GetComponent<SpriteRenderer>();
         cop = GameObject.Find("Cop").GetComponent<Cop>();
         roadColorController = GameObject.Find("Lanes").GetComponent<RoadColorController>();
 
+        carFlame.color = Colors.makeAlphaZero(carFlame.color);
+        carSideAnimationLeft.color = Colors.makeAlphaZero(carSideAnimationLeft.color);
+        carSideAnimationRight.color = Colors.makeAlphaZero(carSideAnimationRight.color);
+
         slowMotionOn = false;
+
+        score = 0;
+        scoreData = new ScoreData(transform.position.x, 50);
+        initialTime = Time.time;
+
+        uIController = GameObject.Find("UI").GetComponent<UIController>();
+
+        user = GameObject.Find("User").GetComponent<User>(); 
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !GameController.GameStopped)
         {
             if (!vehicle.inLastSpeed() && !vehicle.isSpeedLockOn())
             {
@@ -46,30 +69,61 @@ public class Player : MonoBehaviour
             vehicle.increaseSpeed();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !GameController.GameStopped)
         {
             vehicle.decreaseSpeed();
         }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !GameController.GameStopped)
         {
-            vehicle.moveLaneUp();
+            if (vehicle.getLaneIndex() < 3)
+            {
+                carSideAnimationRight.color = new Color(1, 1, 1, 1);
+                vehicle.moveLaneUp();
+                StartCoroutine(carSideAnimation(carSideAnimationRight));
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !GameController.GameStopped)
         {
-            vehicle.moveLaneDown();
+            if (vehicle.getLaneIndex() > 0)
+            {
+                carSideAnimationLeft.color = new Color(1,1,1,1); 
+                vehicle.moveLaneDown();
+                StartCoroutine(carSideAnimation(carSideAnimationLeft));
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.RightArrow) && GameController.GameStopped)
+        {
+            GameController.restartGame(); 
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && GameController.GameStopped)
+        {
+            if (FinalScoreTime.Captured)
+            {
+                Debug.Log(FinalScoreTime.FinalScore);
+                Debug.Log(FinalScoreTime.FinalTime); 
+            }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) && !GameController.GameStopped)
         {
             if (battery.canUseElectricAttack())
             {
-                electricAttack(); 
+                if (battery.currentBattery() >= 100)
+                {
+                    strongElectricAttack(); 
+                } else
+                {
+                    softElectricAttack(); 
+                }
             } 
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && !GameController.GameStopped)
         {
             if (!slowMotionOn && !vehicle.isSpeedLockOn())
             {
@@ -83,34 +137,43 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(transform.position.x, vehicle.currentPositionY(), transform.position.z);
 
         batteryController();
-
         carColorController();
-
         speedLockController();
+        scoreController();
     }
 
     private void FixedUpdate()
     {
         rigVehicle.velocity = vehicle.currentSpeed(); 
     }
-   
-    private void electricAttack()
+
+    private void softElectricAttack()
     {
-        roadColorController.showUpperLanes(); 
+        roadColorController.showUpperLanes(Colors.SkyBlue);
         battery.strongDischarge(30f);
-        cop.pushBack(10f);
-        roadColorController.fadeOutUpperLanes(); 
+        cop.pushBack(15f);
+        roadColorController.fadeOutUpperLanes();
+    }
+
+    private void strongElectricAttack()
+    {
+        roadColorController.showUpperLanes(Colors.ElectricDarkBlue);
+        battery.strongDischarge(30f);
+        cop.pushBack(40f);
+        roadColorController.fadeOutUpperLanes();
     }
 
     private void startSlowMotion()
     {
-        GameController.SpeedMaster = 0.2f;
+        GameController.PlayerSpeedMaster = 0.4f;
+        GameController.TrafficSpeedMaster = 0.01f;
         slowMotionOn = true; 
     }
 
     private void stopSlowMotion()
     {
-        GameController.SpeedMaster = 1f;
+        GameController.PlayerSpeedMaster = 1f;
+        GameController.TrafficSpeedMaster = 1f;
         slowMotionOn = false; 
     }
 
@@ -128,10 +191,15 @@ public class Player : MonoBehaviour
     {
         return battery; 
     }
-   
+
+    public float getScore()
+    {
+        return score;
+    }
+
     private IEnumerator carFlameAnimation()
     {
-        for (float i = 0; i < 1; i+= 0.1f)
+        for (float i = 0; i < 1; i+= 0.07f)
         {
             carFlame.color = new Color(1, 1, 1, i);
             yield return null; 
@@ -139,24 +207,21 @@ public class Player : MonoBehaviour
         carFlame.color = new Color(1, 1, 1, 0);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator carSideAnimation(SpriteRenderer side)
     {
-        if (collision.gameObject.tag == "bot")
+        for (float i = 1; i > 0; i -= 0.05f)
         {
-            GameController.endGame();
+            side.color = new Color(1, 1, 1, i);
+            yield return null;
         }
-        else if (collision.gameObject.tag == "botEnergy")
-        {
-            Destroy(collision.gameObject); 
-            battery.fillBattery();
-        }
+        side.color = new Color(1, 1, 1, 0);
     }
 
     private void batteryController()
     {
         if (slowMotionOn)
         {
-            battery.discharge(40);
+            battery.discharge(50);
         }
         else
         {
@@ -184,7 +249,7 @@ public class Player : MonoBehaviour
                 carColor.color = Colors.BatteryEndRed; 
             } else
             {
-                carColor.color = Color.white; 
+                carColor.color = roadColorController.currentCarColor(); 
             }
         }
     }
@@ -202,17 +267,55 @@ public class Player : MonoBehaviour
             vehicle.toggleSpeedLock(false);
         }
     }
+
+    private void scoreController()
+    {
+        score = (transform.position.x - scoreData.InitialXposition) * 0.2f;
+
+        if ((score - scoreData.LastScore) >= scoreData.ScoreThreshold)
+        {
+            scoreData.LastScore = score;
+            uIController.changeTextColor();
+            battery.fillBattery(); 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "bot")
+        {
+            collision.gameObject.transform.Translate(Vector3.back * 0.3f);
+            endGamePlayer("crash");
+        }
+        else if (collision.gameObject.tag == "botEnergy")
+        {
+            Destroy(collision.gameObject);
+            battery.fillBattery();
+        }
+    }
+
+    public void endGamePlayer(string lossCause)
+    {
+        FinalScoreTime.captureScoreTime(score, (Time.time - initialTime)/60);
+        GameController.endGameGC();
+        uIController.endGameUI(lossCause);
+    }
 }
 
 // Posición en z de los elementos del juego
-// -10: Camera
-// -2: VelocityMeter
-// -1.1: car sprites 
-// -1: Player, Bots, Spawner, Destroyer, Controllers, Cop, EnergyBar, VelocityBar
-// 0: Roads
-// 0.5: PlayerCircle
-// 0.75: Upper Lanes
-// 1: CopLights
 // 2: Lanes
-
-
+// 1: CopLights
+// 0.75: Upper Lanes
+// 0.6: copText
+// 0: Roads
+// -0.2: UI Canvas
+// -0.5: Player Side Animation
+// -1: Player, Bots, Bots square, Spawner, Destroyer, Controllers, Cop, EnergyBar, VelocityBar
+// -1.1: Bot car sprites 
+// -1.2: Expanding circles
+// -1.3: Bots (end game)
+// -1.4: Bot car sprites (end game)
+// -1.5: Player square
+// -1.6: Player sprite, Car flame
+// -2: UI Canvas (end game)
+// -10: Camera

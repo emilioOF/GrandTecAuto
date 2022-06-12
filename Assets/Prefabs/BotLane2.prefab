@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7975477886878001190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.13355, y: -26.629683, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3333, y: 1, z: 1}
   m_Children:
   - {fileID: 9000865234422574271}
@@ -230,6 +230,7 @@ MonoBehaviour:
   speed: 4
   laneIndex: 1
   botSprites:
+  - {fileID: 21300000, guid: d2979b248047943a2aadd6512b1a8cc1, type: 3}
   - {fileID: 21300000, guid: 67416f01946634efc9f5b33e3953649b, type: 3}
   - {fileID: 21300000, guid: 630dd49c880804ee5a05449362c66685, type: 3}
   - {fileID: 21300000, guid: 97f7c5943715f48d08df9242e588f277, type: 3}

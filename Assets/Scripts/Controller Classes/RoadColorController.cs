@@ -26,7 +26,7 @@ public class RoadColorController : MonoBehaviour
 
         leftLane.color = Colors.rgbToColor(Colors.StartingRoadColor);
         rightLane.color = Colors.rgbToColor(Colors.StartingRoadColor);
-        upperLanes.color = Colors.makeAlphaZero(Colors.SkyBlue); 
+        upperLanes.color = Colors.makeAlphaZero(Color.white);
     }
 
     void Update()
@@ -57,8 +57,9 @@ public class RoadColorController : MonoBehaviour
         }
     }
 
-    public void showUpperLanes()
+    public void showUpperLanes(Color lanesColor)
     {
+        upperLanes.color = lanesColor; 
         upperLanes.color = Colors.makeAlphaOne(upperLanes.color);
     }
 
@@ -77,8 +78,27 @@ public class RoadColorController : MonoBehaviour
         upperLanes.color = new Color(upperLanes.color.r, upperLanes.color.g, upperLanes.color.b, 0);
     }
 
+    public Color currentTrafficColor()
+    {
+        if (currentRoadColor >= 106.5f)
+        {
+            return Color.black;
+        }
+        else
+        {
+            return Color.white;
+        }
+    }
+
     public Color currentCarColor()
     {
-        return Colors.carColor(currentRoadColor); 
+        if (currentRoadColor >= 106.5f)
+        {
+            return Color.white;
+        }
+        else
+        {
+            return Colors.CarFinalColor;
+        }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - bot
   - botEnergy
+  - copText
   layers:
   - Default
   - TransparentFX

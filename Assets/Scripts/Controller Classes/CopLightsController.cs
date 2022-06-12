@@ -61,6 +61,5 @@ public class CopLightsController : MonoBehaviour
             leftCopLane.color = Colors.CopRed;
             rightCopLane.color = Colors.CopBlue;
         }
-
     }
 }

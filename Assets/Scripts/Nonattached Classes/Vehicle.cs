@@ -3,8 +3,8 @@ using UnityEngine;
 public class Vehicle
 {
     private int[] speeds = {5, 10, 15, 20, 25, 30};
-    // Bot: 2, 4, 8, 16
-    // Cop: 6, 11, 16, 21
+    // Bot: 2, 4, 18, 20
+    // Cop: 6, 11, 18, 24
     private float[] lanes; 
     private int speedIndex;
     private int laneIndex;
@@ -19,7 +19,7 @@ public class Vehicle
 
     public void increaseSpeed()
     {
-        if (speedIndex < speeds.Length-1 && !speedLockOn) speedIndex += 1; 
+        if (speedIndex < speeds.Length-1 && !speedLockOn) speedIndex += 1;
     }
 
     public void decreaseSpeed()
@@ -29,7 +29,7 @@ public class Vehicle
                      
     public Vector2 currentSpeed()
     {
-        return Vector2.right * speeds[speedIndex] * GameController.SpeedMaster;  
+        return Vector2.right * speeds[speedIndex] * GameController.PlayerSpeedMaster;
     }
 
     public int currentSpeedInt()
@@ -61,12 +61,12 @@ public class Vehicle
 
     public void moveLaneUp()
     {
-        if (laneIndex < lanes.Length - 1) laneIndex += 1; 
+        laneIndex += 1;
     }
 
     public void moveLaneDown()
     {
-        if (laneIndex > 0) laneIndex -= 1; 
+        laneIndex -= 1;
     }
 
     public float currentPositionY()

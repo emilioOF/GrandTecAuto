@@ -10,7 +10,7 @@ public class Battery
     {
         chargeRate = 0.7f;
         dischargeRate = 0.3f;
-        remaining = 100; 
+        remaining = 50; 
     }
 
     public void charge(int velocity)
