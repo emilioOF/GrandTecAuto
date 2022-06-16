@@ -11,10 +11,13 @@ public class Colors
     static private readonly int[] electricBlue = { 0, 161, 255 };
     static private readonly int[] electricDarkBlue = { 0, 83, 147 };
     static private readonly int[] slowMotionClover = { 0, 143, 0 };
+    static private readonly int[] lightGreen = { 0, 210, 0 };
     static private readonly int[] skyBlue = { 0, 215, 255 };
     static private readonly int[] batteryEndRed = { 148, 17, 0 };
     static private readonly int[] grape = { 148, 55, 255 };
     static private readonly int[] carFinalColor = { 190, 190, 190 };
+    static private readonly int[] gameEndGray = { 128, 128, 128 };
+
 
     static private float startingRoadColor = 213;
 
@@ -78,6 +81,11 @@ public class Colors
         get { return rgbToColor(slowMotionClover); }
     }
 
+    static public Color LightGreen
+    {
+        get { return rgbToColor(lightGreen); }
+    }
+
     static public Color SkyBlue
     {
         get { return rgbToColor(skyBlue); }
@@ -96,6 +104,11 @@ public class Colors
     static public Color CarFinalColor
     {
         get { return rgbToColor(carFinalColor); }
+    }
+
+    static public Color GameEndGray
+    {
+        get { return rgbToColor(gameEndGray); }
     }
 
     static public float StartingRoadColor

@@ -12,13 +12,20 @@ public class MenuController : MonoBehaviour
     public float lightsInterval;
     public float roadColorChangeRate;
 
+    public Sprite restartIcon;
+    public Sprite doneIcon; 
+
     private SpriteRenderer background;
     private SpriteRenderer leftCopLight;
     private SpriteRenderer rightCopLight;
     private float currentRoadColor; 
     private float lastTime;
 
-    private GameObject playButton; 
+    private User user; 
+
+    private GameObject playButton;
+    private GameObject userButton;
+    private Text userStatusText; 
 
     void Start()
     {
@@ -37,10 +44,17 @@ public class MenuController : MonoBehaviour
 
         lastTime = Time.time;
 
+        user = GameObject.Find("User").GetComponent<User>(); 
+
         playButton = GameObject.Find("PlayButton");
         playButton.GetComponent<Button>().onClick.AddListener(startGame);
+        userButton = GameObject.Find("UserButton");
+        userButton.GetComponent<Button>().onClick.AddListener(user.getUserData);
+        userStatusText = GameObject.Find("UserStatusText").GetComponent<Text>();
 
-        configureButton(Colors.rgbToColor(183), "Cargando ..."); 
+        configurePlayButton(Colors.rgbToColor(183), "Cargando ...");
+        configureUserButton(Color.white, restartIcon, true);
+        userStatusText.text = "Sin Sesión";
     }
 
     void Update()
@@ -59,8 +73,14 @@ public class MenuController : MonoBehaviour
 
         if (asyncOperation.progress >= 0.9f)
         {
-            configureButton(Color.white, "Jugar");
+            configurePlayButton(Color.white, "Jugar");
             doneLoading = true; 
+        }
+
+        if (user.isLoggedIn())
+        {
+            configureUserButton(Colors.LightGreen, doneIcon, false);
+            userStatusText.text = user.getUserName();
         }
     }
 
@@ -78,10 +98,17 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    private void configureButton(Color color, string text)
+    private void configurePlayButton(Color color, string text)
     {
         playButton.GetComponent<Image>().color = color;
         playButton.transform.Find("PlayButtonText").GetComponent<Text>().text = text;
+    }
+
+    private void configureUserButton(Color color, Sprite sprite, bool isInteractable)
+    {
+        userButton.GetComponent<Image>().sprite = sprite;
+        userButton.GetComponent<Image>().color = color;
+        userButton.GetComponent<Button>().interactable = isInteractable; 
     }
 
     private void startGame()

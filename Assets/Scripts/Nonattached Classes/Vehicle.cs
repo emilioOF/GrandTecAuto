@@ -4,7 +4,7 @@ public class Vehicle
 {
     private int[] speeds = {5, 10, 15, 20, 25, 30};
     // Bot: 2, 4, 18, 20
-    // Cop: 6, 11, 18, 24
+    // Cop: 6, 11, 17, 22
     private float[] lanes; 
     private int speedIndex;
     private int laneIndex;

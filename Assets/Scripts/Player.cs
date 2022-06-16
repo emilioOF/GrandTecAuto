@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     private Cop cop;
     private RoadColorController roadColorController;
     private bool slowMotionOn;
-
+     
     private float score;
     private float finalScore; 
     private ScoreData scoreData;
@@ -25,7 +25,9 @@ public class Player : MonoBehaviour
 
     private UIController uIController;
 
-    private User user; 
+    private User user;
+
+    private bool saved; 
  
     void Awake()
     {
@@ -55,7 +57,7 @@ public class Player : MonoBehaviour
 
         uIController = GameObject.Find("UI").GetComponent<UIController>();
 
-        user = GameObject.Find("User").GetComponent<User>(); 
+        user = GameObject.Find("User").GetComponent<User>();
     }
 
     void Update()
@@ -103,10 +105,18 @@ public class Player : MonoBehaviour
         {
             if (FinalScoreTime.Captured)
             {
-                Debug.Log(FinalScoreTime.FinalScore);
-                Debug.Log(FinalScoreTime.FinalTime); 
+                if (user.isLoggedIn()) 
+                {
+                    user.saveScore(FinalScoreTime.FinalScore, FinalScoreTime.FinalTime);
+                } else {
+                    uIController.showLogInError(); 
+                }
             }
+        }
 
+        if (Input.GetKeyDown(KeyCode.Escape) && GameController.GameStopped)
+        {
+            GameController.returnMenu(); 
         }
 
         if (Input.GetKeyDown(KeyCode.A) && !GameController.GameStopped)
@@ -159,13 +169,13 @@ public class Player : MonoBehaviour
     {
         roadColorController.showUpperLanes(Colors.ElectricDarkBlue);
         battery.strongDischarge(30f);
-        cop.pushBack(40f);
+        cop.pushBack(45f);
         roadColorController.fadeOutUpperLanes();
     }
 
     private void startSlowMotion()
     {
-        GameController.PlayerSpeedMaster = 0.4f;
+        GameController.PlayerSpeedMaster = 0.45f;
         GameController.TrafficSpeedMaster = 0.01f;
         slowMotionOn = true; 
     }
@@ -264,9 +274,9 @@ public class Player : MonoBehaviour
 
         if (vehicle.isSpeedLockOn() && battery.currentBattery() > 20)
         {
-            vehicle.toggleSpeedLock(false);
-        }
-    }
+            vehicle.toggleSpeedLock(false);  
+        } 
+    } 
 
     private void scoreController()
     {

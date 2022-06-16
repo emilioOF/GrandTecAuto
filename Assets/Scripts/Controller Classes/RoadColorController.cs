@@ -70,7 +70,7 @@ public class RoadColorController : MonoBehaviour
 
     private IEnumerator fadeOutUpperLanesCR()
     {
-        for (float alpha = 1; alpha >= 0; alpha -= 0.03f)
+        for (float alpha = 1; alpha >= 0; alpha -= 0.025f)
         {
             upperLanes.color = new Color(upperLanes.color.r, upperLanes.color.g, upperLanes.color.b, alpha);
             yield return null;

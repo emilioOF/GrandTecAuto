@@ -15,10 +15,13 @@ public class UIController : MonoBehaviour
 
     private Transform ui; 
     private Text scoreValue;
-    private Text timeValue; 
+    private Text timeValue;
+    private GameObject endMenu;
 
     private Transform expandingCircleCrash;
-    private Transform expandingCircleCaught; 
+    private Transform expandingCircleCaught;
+
+    private bool gameStopped; 
 
     private float cameraWidth;
 
@@ -36,16 +39,20 @@ public class UIController : MonoBehaviour
         ui = GameObject.Find("UI").transform; 
         scoreValue = transform.Find("ScoreValue").GetComponent<Text>();
         timeValue = transform.Find("TimeValue").GetComponent<Text>();
+        endMenu = transform.Find("EndMenu").gameObject;
+        ui.transform.Find("LogInError").gameObject.SetActive(false);
 
         ui.localPosition = new Vector3(ui.localPosition.x, ui.localPosition.y, 9.8f); 
 
         expandingCircleCrash = GameObject.Find("ExpandingCircleCrash").transform;
         expandingCircleCaught = GameObject.Find("ExpandingCircleCaught").transform;
 
-        expandingCircleCrash.GetComponent<SpriteRenderer>().color = Colors.Grape;
-        expandingCircleCaught.GetComponent<SpriteRenderer>().color = Colors.Grape;
+        expandingCircleCrash.GetComponent<SpriteRenderer>().color = Colors.GameEndGray;
+        expandingCircleCaught.GetComponent<SpriteRenderer>().color = Colors.GameEndGray;
         expandingCircleCrash.localScale = Vector3.zero;
         expandingCircleCaught.localScale = Vector3.zero;
+
+        gameStopped = false; 
 
         cameraWidth = GameObject.Find("GameCamera").GetComponent<GameCamera>().CameraWidth;
 
@@ -54,7 +61,7 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (!GameController.GameStopped)
+        if (!gameStopped)
         {
             scoreValue.text = toString(player.getScore());
             controlVelocityBar();
@@ -100,6 +107,8 @@ public class UIController : MonoBehaviour
 
     public void endGameUI(string lossCause)
     {
+        gameStopped = true;
+
         expandCircle(lossCause); 
 
         ui.localPosition = new Vector3(ui.localPosition.x, ui.localPosition.y, 8f);
@@ -115,6 +124,17 @@ public class UIController : MonoBehaviour
         ui.transform.Find("ScoreTitle").gameObject.SetActive(state);
         ui.transform.Find("TimeTitle").gameObject.SetActive(state);
         timeValue.gameObject.SetActive(state);
+
+        if (state)
+        {
+            endMenu.SetActive(true);
+            StartCoroutine(showEndMenu()); 
+
+        } else
+        {
+            endMenu.GetComponent<Image>().color = new Color(1, 1, 1, 0); 
+            endMenu.SetActive(false); 
+        }
     }
 
     public void expandCircle(string circle)
@@ -135,5 +155,20 @@ public class UIController : MonoBehaviour
             circleTransform.localScale = new Vector3(i, i, 0);
             yield return null;
         }
+    }
+
+    private IEnumerator showEndMenu()
+    {
+        for (float i = 0; i < 1; i += 0.01f)
+        {
+            endMenu.GetComponent<Image>().color = new Color(1, 1, 1, i);
+            yield return null; 
+        }
+        endMenu.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+    }
+
+    public void showLogInError()
+    {
+        ui.transform.Find("LogInError").gameObject.SetActive(true);
     }
 }

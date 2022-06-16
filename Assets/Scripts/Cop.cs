@@ -3,9 +3,10 @@ using UnityEngine;
 public class Cop: MonoBehaviour
 {
     public float speedIncreaseRate;
+    public float speedIncreaseRateMultiplier; 
     public float initialDistance;
 
-    private int[] speeds = {6, 11, 18, 24};
+    private int[] speeds = {6, 11, 17, 22};
     private Transform playerTran;
     private int speedIndex;
     private float xPosition;
@@ -59,6 +60,7 @@ public class Cop: MonoBehaviour
         if (speedIndex < speeds.Length-1)
         {
             speedIndex += 1;
+            speedIncreaseRate *= speedIncreaseRateMultiplier; 
             return; 
         }
         finalSpeed = true;

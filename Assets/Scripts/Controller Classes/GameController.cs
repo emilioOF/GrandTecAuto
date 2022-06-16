@@ -45,6 +45,13 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene("PlayScene");
     }
 
+    static public void returnMenu()
+    {
+        resetMembers();
+        FinalScoreTime.resetFinalScoreTime();
+        SceneManager.LoadScene("MenuScene");
+    }
+
     static private void resetMembers()
     {
         Time.timeScale = 1; 
